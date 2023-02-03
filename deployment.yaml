@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-youtube-gke
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-youtube-gke
+  template:
+    metadata:
+      labels:
+        app: hello-youtube-gke
+    spec:
+      containers:
+        - name: hello-youtube-gke
+          image: gcr.io/container-demo-376611/helloyoutube-gke:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
